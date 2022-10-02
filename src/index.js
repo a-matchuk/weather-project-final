@@ -125,22 +125,3 @@ function showInfo(responce) {
 
   getForecast(responce.data.coord);
 }
-
-function ShowFahrenheitTemperature(event) {
-  event.preventDefault();
-  let CurrentTemperature = Math.round(celsiusTemperature);
-  let FahrenheitTemperature = (CurrentTemperature * 9) / 5 + 32;
-  let strong = document.querySelector("#temperature");
-  strong.innerHTML = Math.round(FahrenheitTemperature);
-}
-function ShowCelsiusTemperature(event) {
-  event.preventDefault();
-  let strong = document.querySelector("#temperature");
-  strong.innerHTML = Math.round(celsiusTemperature);
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", ShowFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", ShowCelsiusTemperature);
