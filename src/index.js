@@ -11,7 +11,7 @@ let days = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday",
+  "Saturday"
 ];
 let currentDay = days[now.getDay()];
 let currentHour = String(now.getHours()).padStart(2, "0");
@@ -20,6 +20,48 @@ let date = `${currentDay}, ${currentHour}:${currentMinute}`;
 
 let h3 = document.querySelector("h3");
 h3.innerHTML = date;
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function DisplayForecast(responce) {
+  let forecast = responce.data.daily;
+
+  console.log(forecast);
+
+  let ForecastElement = document.querySelector("#forecast");
+
+  let ForecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      ForecastHTML =
+        ForecastHTML +
+        `<div class="col-2">
+  <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+  <img
+    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+    alt=""
+    width="50"
+  /> 
+  <div class="weather-forecast-temperatures">
+    <span class="weather-forecast-temperatures-max">${Math.round(
+      forecastDay.temp.max
+    )}°</span> 
+    <span class="weather-forecast-temperatures-min">${Math.round(
+      forecastDay.temp.min
+    )}°</span>
+</div>
+</div>`;
+    }
+  });
+  ForecastHTML = ForecastHTML + `</div>`;
+  ForecastElement.innerHTML = ForecastHTML;
+}
 
 //Feature #2
 let searchInput = document.querySelector("#query");
@@ -41,6 +83,14 @@ form.addEventListener("submit", showCity);
 
 // Week 5 homework
 let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+
+function getForecast(coordinates) {
+  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  console.log(coordinates);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(DisplayForecast);
+}
 
 function showInfo(responce) {
   celsiusTemperature = responce.data.main.temp;
@@ -72,6 +122,8 @@ function showInfo(responce) {
     "src",
     `http://openweathermap.org/img/wn/${responce.data.weather[0].icon}@2x.png`
   );
+
+  getForecast(responce.data.coord);
 }
 
 function ShowFahrenheitTemperature(event) {
