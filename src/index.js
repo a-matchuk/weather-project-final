@@ -81,11 +81,11 @@ function showCity(event) {
 let form = document.querySelector("form");
 form.addEventListener("submit", showCity);
 
-// Week 5 homework
-let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+// Week 5 homeworkß
+let apiKey = "2b6fdad0cbd018949c50c70f72250726";
 
 function getForecast(coordinates) {
-  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  let apiKey = "2b6fdad0cbd018949c50c70f72250726";
   console.log(coordinates);
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiUrl);
