@@ -7,14 +7,14 @@ body {
   max-width: 700px;
   margin: 40px auto;
   padding: 20px;
-  background-image: url("https://treasurytoday.com/-/media/images/technology/treasury-systems/2019-03-04-tt-10-b2b__coloured-night-clouds-nature-series-ss142415212__1920x1080.jpg");
+  background-image: url("https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg");
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 form {
-  background-color: rgb(150, 116, 177);
+  background-color: #ec6e4c;
   width: 300px;
   height: 44px;
   border-radius: 5px;
